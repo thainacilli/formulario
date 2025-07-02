@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>   
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-weight: bold;
+            color: blueviolet;
+        }
+        
+        small {
+            color: rgb(153, 150, 150);
+        }
+        
+        /* Estilo das perguntas (azul) */
+        .pergunta p, .pergunta legend, .pergunta label:not(.resposta) {
+            color: cornflowerblue;
+            font-weight: bold;
+        }
+        
+        /* Estilo das respostas (roxo) */
+        .resposta, input, select, textarea {
+            color:blueviolet;
+            cursor: pointer;
+            
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: #34e051;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+       
+        
+        fieldset {
+            border: 1px solid cornflowerblue;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        legend {
+            padding: 0 10px;
+        }
+        
+        button {
+            background-color: blueviolet;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Como é namorar comigo?</h1>
+    <small>Pesquisa feita para fins didáticos</small>
 
+    <form action="https://formsubmit.co/thainacilli@gmail.com" method="post">
+        <input type="hidden" name="_subject" value="Resposta formulario!">
+            <input type="hidden" name="_template" value="basic">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="pergunta">
+            <fieldset>
+                <legend>Informação inicial</legend>
+                <p>Você é a
+                    <span 
+                        onmouseover="document.getElementById('tooltip').style.display='block'"
+                        onmouseout="document.getElementById('tooltip').style.display='none'">
+                        atual?
+                    </span>
+                </p>
+                <div id="tooltip" class="tooltip">(atualmente, usa um anelzinho com uma pedra roxa?)</div>
+                
+                <label class="resposta"><input type="radio" name="atual" value="sim"> Sim</label><br>
+                <label class="resposta"><input type="radio" name="atual" value="não"> Não</label>
+            </fieldset>
+        </div>
+
+        <div class="pergunta">
+            <p>Selecione em quais pontos posso melhorar:</p>
+            <label class="resposta"><input type="checkbox" name="melhoria" value="carinho"> + Carinho</label><br>
+            <label class="resposta"><input type="checkbox" name="melhoria" value="Afeto"> + Afeto público</label><br>
+            <label class="resposta"><input type="checkbox" name="melhoria" value="surpresa"> + Surpresas</label><br>
+            <label class="resposta"><input type="checkbox" name="melhoria" value="nada"> Nada! você é perfeita ♥</label>
+        </div>
+        
+        <div class="pergunta">
+            <p>Qual nota de 0 até 5 você daria pro nosso relacionamento?</p>
+            <select class="resposta" name="nota">
+                <option value="">Selecione a nota</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="pergunta">
+            <label>Me conta qual momento juntas foi o mais especial pra você:</label><br>
+            <textarea class="resposta" rows="7" cols="50" name="mensagem"></textarea>
+        </div>
+    
+        <div class="pergunta">
+            <p>Nota final: de 0 a 10 quanto você me recomendaria pra uma amiga? 🤩</p>
+            <input class="resposta" type="range" id="nota" name="nota_final" min="0" max="10">
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('nota').value = document.getElementById('nota').value;
+        });
+    </script>
+</body>
+</html>
