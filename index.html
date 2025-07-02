@@ -3,37 +3,30 @@
 <head>
     <title>Feedback</title>   
     <style>
-        /* Estilos gerais */
         body {
             font-family: Arial, sans-serif;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
         }
-        
         h1 {
             font-weight: bold;
             color: blueviolet;
         }
-        
         small {
             color: rgb(153, 150, 150);
         }
-        
-        /* Estilo das perguntas (azul) */
+        .pergunta {
+            margin-bottom: 20px;
+        }
         .pergunta p, .pergunta legend, .pergunta label:not(.resposta) {
             color: cornflowerblue;
             font-weight: bold;
         }
-        
-        /* Estilo das respostas (roxo) */
         .resposta, input, select, textarea {
-            color:blueviolet;
+            color: blueviolet;
             cursor: pointer;
-            
         }
-        
-        /* Tooltip */
         .tooltip {
             display: none;
             position: absolute;
@@ -44,20 +37,15 @@
             margin-top: 5px;
             font-size: 14px;
         }
-        
-       
-        
         fieldset {
             border: 1px solid cornflowerblue;
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 20px;
         }
-        
         legend {
             padding: 0 10px;
         }
-        
         button {
             background-color: blueviolet;
             color: white;
@@ -67,6 +55,11 @@
             cursor: pointer;
             margin-top: 20px;
         }
+        #valor-nota {
+            color: blueviolet;
+            font-weight: bold;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -74,24 +67,19 @@
     <small>Pesquisa feita para fins didáticos</small>
 
     <form action="https://formspree.io/f/mvgryakl" method="POST">
-   
-    <input type="hidden" name="_subject" value="Resposta do formulário!">
-    <input type="hidden" name="_language" value="pt">
+        <input type="hidden" name="_subject" value="Resposta do formulário amoroso!">
+        <input type="hidden" name="_language" value="pt">
+        
+        <input type="text" name="_gotcha" style="display:none">
 
-    <div class="pergunta">
-    
-    </div>
-    
-    <button type="submit">Enviar</button>
-</form>
-            <div class="pergunta">
+        <div class="pergunta">
             <fieldset>
                 <legend>Informação inicial</legend>
                 <p>Você é a
-                    <span 
-                        onmouseover="document.getElementById('tooltip').style.display='block'"
-                        onmouseout="document.getElementById('tooltip').style.display='none'">
-                        atual?
+                    <span onmouseover="document.getElementById('tooltip').style.display='block'"
+                          onmouseout="document.getElementById('tooltip').style.display='none'"
+                          style="color: red; font-weight: bold; cursor: help;">
+                        <u>atual</u>?
                     </span>
                 </p>
                 <div id="tooltip" class="tooltip">(atualmente, usa um anelzinho com uma pedra roxa?)</div>
@@ -129,11 +117,14 @@
     
         <div class="pergunta">
             <p>Nota final: de 0 a 10 quanto você me recomendaria pra uma amiga? 🤩</p>
-            <input class="resposta" type="range" id="nota" name="nota_final" min="0" max="10">
+            <input class="resposta" type="range" id="nota" name="nota_final" min="0" max="10" 
+                   oninput="document.getElementById('valor-nota').innerText = this.value">
+            <span id="valor-nota">5</span>/10
         </div>
 
         <button type="submit">Enviar</button>
     </form>
+
     <script>
         document.querySelector('form').addEventListener('submit', function() {
             document.getElementById('nota').value = document.getElementById('nota').value;
